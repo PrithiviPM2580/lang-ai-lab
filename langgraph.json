@@ -1,0 +1,9 @@
+{
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "ai-chatbot": "src/lib/ai-chatbot/server.ts"
+  },
+  "env": ".env"
+}

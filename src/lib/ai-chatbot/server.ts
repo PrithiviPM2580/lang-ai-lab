@@ -1,8 +1,18 @@
 import { agent } from "./agent";
 
-export async function chatWithAgent(query: string) {
-	const response = await agent.invoke({
-		messages: [{ role: "human", content: query }],
+export async function chatWithAgent(message: string) {
+	const stream = await agent.stream(
+		{
+			messages: [{ role: "user", content: message }],
+		},
+		{
+			encoding: "text/event-stream",
+			streamMode: ["values", "messages", "updates"],
+			recursionLimit: 3,
+		},
+	);
+
+	return new Response(stream, {
+		headers: { "Content-Type": "text/event-stream" },
 	});
-	return response.messages.at(-1)?.content;
 }
