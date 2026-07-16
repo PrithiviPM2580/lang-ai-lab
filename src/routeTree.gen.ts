@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiChatbotIndexRouteImport } from './routes/ai-chatbot/index'
+import { Route as ApiAiChatbotRouteImport } from './routes/api/ai-chatbot'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const AiChatbotIndexRoute = AiChatbotIndexRouteImport.update({
   path: '/ai-chatbot/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAiChatbotRoute = ApiAiChatbotRouteImport.update({
+  id: '/api/ai-chatbot',
+  path: '/api/ai-chatbot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/ai-chatbot': typeof ApiAiChatbotRoute
   '/ai-chatbot/': typeof AiChatbotIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/ai-chatbot': typeof ApiAiChatbotRoute
   '/ai-chatbot': typeof AiChatbotIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/ai-chatbot': typeof ApiAiChatbotRoute
   '/ai-chatbot/': typeof AiChatbotIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ai-chatbot/'
+  fullPaths: '/' | '/api/ai-chatbot' | '/ai-chatbot/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ai-chatbot'
-  id: '__root__' | '/' | '/ai-chatbot/'
+  to: '/' | '/api/ai-chatbot' | '/ai-chatbot'
+  id: '__root__' | '/' | '/api/ai-chatbot' | '/ai-chatbot/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAiChatbotRoute: typeof ApiAiChatbotRoute
   AiChatbotIndexRoute: typeof AiChatbotIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiChatbotIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/ai-chatbot': {
+      id: '/api/ai-chatbot'
+      path: '/api/ai-chatbot'
+      fullPath: '/api/ai-chatbot'
+      preLoaderRoute: typeof ApiAiChatbotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAiChatbotRoute: ApiAiChatbotRoute,
   AiChatbotIndexRoute: AiChatbotIndexRoute,
 }
 export const routeTree = rootRouteImport

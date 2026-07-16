@@ -32,7 +32,7 @@ import {
 	ToolInput,
 	ToolOutput,
 } from "#/components/ai-elements/tool";
-import type { agent } from "#/lib/ai-chatbot/agent";
+import type { agent } from "#/lib/ai-chatbot/langraph/agent";
 
 export const Route = createFileRoute("/ai-chatbot/")({
 	component: RouteComponent,
