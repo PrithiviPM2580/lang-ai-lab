@@ -17,6 +17,7 @@
     "langraph:dev": "bunx @langchain/langgraph-cli dev"
   },
   "dependencies": {
+    "@langchain/community": "^1.1.29",
     "@langchain/core": "^1.2.3",
     "@langchain/langgraph": "^1.4.8",
     "@langchain/langgraph-sdk": "^1.9.27",
@@ -50,6 +51,7 @@
     "media-chrome": "^4.19.2",
     "motion": "^12.42.2",
     "nanoid": "^6.0.0",
+    "pdf-parse": "^2.4.5",
     "radix-ui": "^1.6.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
