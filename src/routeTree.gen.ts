@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DoccuemtQaIndexRouteImport } from './routes/doccuemt-qa/index'
 import { Route as AiChatbotIndexRouteImport } from './routes/ai-chatbot/index'
+import { Route as ApiDocuemtQaRouteImport } from './routes/api/docuemt-qa'
 import { Route as ApiAiChatbotRouteImport } from './routes/api/ai-chatbot'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +20,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DoccuemtQaIndexRoute = DoccuemtQaIndexRouteImport.update({
+  id: '/doccuemt-qa/',
+  path: '/doccuemt-qa/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiChatbotIndexRoute = AiChatbotIndexRouteImport.update({
   id: '/ai-chatbot/',
   path: '/ai-chatbot/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocuemtQaRoute = ApiDocuemtQaRouteImport.update({
+  id: '/api/docuemt-qa',
+  path: '/api/docuemt-qa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAiChatbotRoute = ApiAiChatbotRouteImport.update({
@@ -32,31 +44,51 @@ const ApiAiChatbotRoute = ApiAiChatbotRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/ai-chatbot': typeof ApiAiChatbotRoute
+  '/api/docuemt-qa': typeof ApiDocuemtQaRoute
   '/ai-chatbot/': typeof AiChatbotIndexRoute
+  '/doccuemt-qa/': typeof DoccuemtQaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/ai-chatbot': typeof ApiAiChatbotRoute
+  '/api/docuemt-qa': typeof ApiDocuemtQaRoute
   '/ai-chatbot': typeof AiChatbotIndexRoute
+  '/doccuemt-qa': typeof DoccuemtQaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/ai-chatbot': typeof ApiAiChatbotRoute
+  '/api/docuemt-qa': typeof ApiDocuemtQaRoute
   '/ai-chatbot/': typeof AiChatbotIndexRoute
+  '/doccuemt-qa/': typeof DoccuemtQaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/ai-chatbot' | '/ai-chatbot/'
+  fullPaths:
+    | '/'
+    | '/api/ai-chatbot'
+    | '/api/docuemt-qa'
+    | '/ai-chatbot/'
+    | '/doccuemt-qa/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/ai-chatbot' | '/ai-chatbot'
-  id: '__root__' | '/' | '/api/ai-chatbot' | '/ai-chatbot/'
+  to:
+    '/' | '/api/ai-chatbot' | '/api/docuemt-qa' | '/ai-chatbot' | '/doccuemt-qa'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/ai-chatbot'
+    | '/api/docuemt-qa'
+    | '/ai-chatbot/'
+    | '/doccuemt-qa/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiAiChatbotRoute: typeof ApiAiChatbotRoute
+  ApiDocuemtQaRoute: typeof ApiDocuemtQaRoute
   AiChatbotIndexRoute: typeof AiChatbotIndexRoute
+  DoccuemtQaIndexRoute: typeof DoccuemtQaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +100,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/doccuemt-qa/': {
+      id: '/doccuemt-qa/'
+      path: '/doccuemt-qa'
+      fullPath: '/doccuemt-qa/'
+      preLoaderRoute: typeof DoccuemtQaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-chatbot/': {
       id: '/ai-chatbot/'
       path: '/ai-chatbot'
       fullPath: '/ai-chatbot/'
       preLoaderRoute: typeof AiChatbotIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/docuemt-qa': {
+      id: '/api/docuemt-qa'
+      path: '/api/docuemt-qa'
+      fullPath: '/api/docuemt-qa'
+      preLoaderRoute: typeof ApiDocuemtQaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/ai-chatbot': {
@@ -88,7 +134,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiAiChatbotRoute: ApiAiChatbotRoute,
+  ApiDocuemtQaRoute: ApiDocuemtQaRoute,
   AiChatbotIndexRoute: AiChatbotIndexRoute,
+  DoccuemtQaIndexRoute: DoccuemtQaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
