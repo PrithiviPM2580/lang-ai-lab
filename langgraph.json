@@ -3,7 +3,7 @@
     "."
   ],
   "graphs": {
-    "ai-chatbot": "src/lib/ai-chatbot/server.ts"
+   "ai-chatbot": "./src/lib/ai-chatbot/agent.ts:agent"
   },
   "env": ".env"
 }
